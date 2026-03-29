@@ -9,7 +9,7 @@ cd ..
 
 echo "=== Building backend ==="
 cd backend
-npm install --include=dev
+npm install --include=dev --legacy-peer-deps
 npm run build
 cd ..
 
