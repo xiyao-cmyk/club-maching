@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+*.sqlite
+*.log
+.DS_Store
+Thumbs.db
+frontend/.env.local
+frontend/.env.*.local
+cloudflared.exe
+screenshot.js
+screenshots/
