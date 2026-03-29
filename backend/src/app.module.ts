@@ -50,8 +50,10 @@ const serveStaticModules = existsSync(join(frontendDistPath, 'index.html'))
       dataSourceFactory: async (options) => {
         if (process.env.DATABASE_URL) {
           // 生产环境：连接真实 PostgreSQL
+          console.log('[DB] Connecting to PostgreSQL...');
           const ds = new DataSource(options!);
           await ds.initialize();
+          console.log('[DB] Connected successfully');
           return ds;
         }
         // 本地开发：使用 pg-mem 内存数据库
