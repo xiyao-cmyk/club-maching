@@ -10,11 +10,9 @@ services:
     env: node
     plan: free
     region: singapore
-    buildCommand: "cd frontend && npm install && npm run build && cd ../backend && npm install && npm run build"
-    startCommand: "cd backend && node dist/main.js"
+    buildCommand: bash build.sh
+    startCommand: cd backend && node dist/main.js
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: DATABASE_URL
         fromDatabase:
           name: club-matching-db
