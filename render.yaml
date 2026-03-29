@@ -9,7 +9,6 @@ services:
     name: club-matching-app
     env: node
     plan: free
-    region: singapore
     buildCommand: bash build.sh
     startCommand: cd backend && node dist/main.js
     envVars:
