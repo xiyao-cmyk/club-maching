@@ -25,9 +25,9 @@ if (!process.env.DATABASE_URL) {
   memDb.public.registerFunction({ name: 'obj_description', args: ['int', 'text'], returns: 'text', implementation: () => null } as any);
 }
 
-// 本地开发时若 frontend/dist 存在则提供静态文件服务
+// 若 frontend/dist 存在则提供静态文件服务（本地开发和 Render 单体部署）
 const frontendDistPath = join(process.cwd(), '..', 'frontend', 'dist');
-const serveStaticModules = (!process.env.DATABASE_URL && existsSync(join(frontendDistPath, 'index.html')))
+const serveStaticModules = existsSync(join(frontendDistPath, 'index.html'))
   ? [ServeStaticModule.forRoot({ rootPath: frontendDistPath, exclude: ['/api/(.*)'] })]
   : [];
 

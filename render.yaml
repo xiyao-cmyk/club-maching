@@ -1,0 +1,28 @@
+databases:
+  - name: club-matching-db
+    databaseName: club_matching
+    user: club_user
+    plan: free
+
+services:
+  - type: web
+    name: club-matching-app
+    env: node
+    plan: free
+    region: singapore
+    buildCommand: >
+      cd frontend && npm install && npm run build &&
+      cd ../backend && npm install && npm run build
+    startCommand: cd backend && node dist/main.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: club-matching-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
